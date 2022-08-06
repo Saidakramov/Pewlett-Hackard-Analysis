@@ -27,7 +27,7 @@ SELECT DISTINCT ON (emp_no) emp_no,
 FROM retirement_titles
 WHERE (to_date = '9999-01-01')
 ORDER BY emp_no, to_date DESC;
---SELECT * FROM unique_titles;
+SELECT * FROM unique_titles;
 
 -- number of titles
 SELECT COUNT(title) FROM unique_titles;
@@ -71,17 +71,9 @@ ON (e.emp_no = ti.emp_no)
 WHERE (de.to_date = '9999-01-01') AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ORDER BY e.emp_no;
 
+SELECT COUNT(title), title
+FROM mentorship_eligibility
+GROUP BY title
+ORDER BY COUNT(title) DESC;
 
--- dropping and creating new titles table to fix the error
-DROP TABLE titles CASCADE;
-CREATE TABLE titles (
-    emp_no INT NOT NULL,
-    title VARCHAR(50) NOT NULL,
-    from_date DATE NOT NULL,
-    to_date DATE,
-    FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
-    PRIMARY KEY (emp_no, title, from_date)
-);
 
-SELECT * FROM titles WHERE emp_no = 10291;
-SELECT * FROM unique_titles WHERE emp_no = 10291;

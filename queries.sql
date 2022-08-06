@@ -72,14 +72,17 @@ CREATE TABLE titles (
   	PRIMARY KEY (emp_no)
 );
 
-DROP TABLE titles;
+-- dropping and creating new titles table to fix the error
+DROP TABLE titles CASCADE;
 CREATE TABLE titles (
-	emp_no INT NOT NULL,
-	title VARCHAR NOT NULL,
-	from_date DATE NOT NULL,
-  	to_date DATE NOT NULL,
-	FOREIGN KEY (emp_no) REFERENCES employees (emp_no)
+    emp_no INT NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    from_date DATE NOT NULL,
+    to_date DATE,
+    FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+    PRIMARY KEY (emp_no, title, from_date)
 );
+
 SELECT * FROM departments;
 SELECT * FROM dept_emp;
 SELECT * FROM dept_manager;
