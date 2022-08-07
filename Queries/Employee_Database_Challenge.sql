@@ -70,7 +70,13 @@ INNER JOIN titles as ti
 ON (e.emp_no = ti.emp_no)
 WHERE (de.to_date = '9999-01-01') AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ORDER BY e.emp_no;
+SELECT * FROM mentorship_eligibility;
 
+-- Aditional queries
+--counting eligible total number
+SELECT COUNT (title) FROM mentorship_eligibility;
+
+-- counting eligible titles number
 SELECT COUNT(title), title
 FROM mentorship_eligibility
 GROUP BY title
